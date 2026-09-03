@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Radar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="radar-wrap" class="hidden">
+    <div class="device">
+
+      <!-- Pequenos furos de parafuso nos cantos -->
+      <div class="hole hole-tl"></div>
+      <div class="hole hole-tr"></div>
+      <div class="hole hole-bl"></div>
+      <div class="hole hole-br"></div>
+
+      <!-- Header da marca -->
+      <div class="brand-bar">
+        <div class="brand-logo">
+          <span class="brand-k"></span>
+          <span class="brand-waves"></span>
+          <span class="brand-name">RADAR MÓVEL</span>
+        </div>
+        <span class="brand-sub">SIGNALS INC.</span>
+      </div>
+
+      <!-- Tela LCD -->
+      <div class="lcd-frame">
+        <div class="lcd">
+          <div class="scanline"></div>
+
+          <!-- Linha de labels -->
+          <div class="lcd-labels">
+            <span class="lcd-label">VELOCIDADE</span>
+            <span class="lcd-label">DISTÂNCIA</span>
+          </div>
+
+          <!-- Valores principais -->
+          <div class="lcd-values">
+            <div class="lcd-speed-block">
+              <span class="lcd-speed" id="speedVal">---</span>
+              <span class="lcd-unit" id="speedUnit">KMH</span>
+            </div>
+            <div class="lcd-dist-block">
+              <span class="lcd-dist" id="distVal">--.-</span>
+              <span class="lcd-unit" id="distUnit">M</span>
+            </div>
+          </div>
+
+          <!-- Linha de status -->
+          <div class="lcd-status">
+            <span class="lcd-alert" id="alertText"></span>
+          </div>
+        </div>
+
+        <!-- Botão PWR lateral -->
+        <div class="pwr-btn">
+          <span>PWR</span>
+          <div class="pwr-led" id="pwrLed"></div>
+        </div>
+      </div>
+
+      <!-- Linha divisória -->
+      <div class="divider-strip"></div>
+
+      <!-- Botões inferiores -->
+      <div class="btn-row">
+        <div class="btn-col">
+          <button class="btn btn-top">MENU</button>
+          <button class="btn btn-bot">ESC</button>
+        </div>
+        <div class="btn-col">
+          <button class="btn btn-top">MODE</button>
+          <button class="btn btn-bot btn-arrow">▲</button>
+        </div>
+        <div class="btn-col">
+          <button class="btn btn-top">BRT/VOL</button>
+          <button class="btn btn-bot btn-arrow">▼</button>
+        </div>
+        <div class="btn-col">
+          <button class="btn btn-top">TEST</button>
+          <button class="btn btn-bot btn-enter">ENTER</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
