@@ -1,6 +1,6 @@
-fx_version 'cerulean'
-game 'gta5'
-this_is_a_map 'yes'
-lua54 'yes'
-dependency '/assetpacks'
+shared_script "@ThnAC/natives.lua"
 
+fx_version 'adamant'
+game 'gta5'
+lua54 "yes"
+this_is_a_map 'yes'
