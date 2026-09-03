@@ -1,54 +1,10 @@
-const WebSocket = require('ws');
+'use strict';
 
-const port = 8080;
+const WebSocket = require('./lib/websocket');
 
-const RTC = new WebSocket.Server({ port });
+WebSocket.createWebSocketStream = require('./lib/stream');
+WebSocket.Server = require('./lib/websocket-server');
+WebSocket.Receiver = require('./lib/receiver');
+WebSocket.Sender = require('./lib/sender');
 
-RTC.on('listening', () => {
-  console.log('Listening at port', port);
-});
-
-/** @type {Map<string, Set<WebSocket>>} */
-const rooms = new Map();
-
-function id() {
-  return ++id.last;
-}
-id.last = 0;
-
-RTC.on('connection', (socket, request) => {
-  let room = request.url && request.url.substr(1);
-  if (room) {
-    if (rooms.has(room)) {
-      rooms.get(room).add(socket);
-    } else {
-      rooms.set(room, new Set([socket]));
-    }
-  } else {
-    return socket.close();
-  }
-
-  socket.id = id();
-
-  console.log(`WebSocket ${socket.id} connected on room: ${room}`);
-
-  socket.on('message', data => {
-    if (rooms.has(room)) {
-      rooms.get(room).forEach(peer => {
-        peer != socket && peer.send(data);
-      });
-    }
-  });
-  socket.on('close', () => {
-    const leaveFrom = rooms.get(room);
-    if (leaveFrom) {
-      leaveFrom.delete(socket);
-      if (!leaveFrom.size)
-        rooms.delete(room);
-      
-      console.log(`WebSocket ${socket.id} disconnected from room: ${room}`);
-    } else {
-      console.log(`WebSocket ${socket.id} disconnected`);
-    }
-  });
-});
+module.exports = WebSocket;
